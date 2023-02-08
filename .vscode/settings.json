@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/sevriem/projects/cs3100-project3-linked-sequence",
+            "binaryPath": "/home/sevriem/projects/cs3100-project3-linked-sequence/main",
+            "binaryArgs": []
+        }
+    ]
+}
