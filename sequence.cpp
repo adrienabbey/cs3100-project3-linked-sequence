@@ -11,6 +11,7 @@
 Sequence::Sequence(size_type sz)
 {
     // Create a Sequence of the specified length.
+    // These will likely have Node objects.
 }
 
 Sequence::Sequence(const Sequence &s)
