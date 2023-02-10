@@ -8,9 +8,9 @@ using namespace std;
 class Node
 {
 public:
-    Node *next;     // Tracks the next Node
-    Node *previous; // Tracks the previous Node
-    /* Also need something to contain data, but I'm not sure which.  typedef? */
-    Node();         // Empty Node constructor
-    /* I know I need another constructor, but this depends on the above uncertainty. */
+    Node *next;                                              // Tracks the next Node in a Sequence
+    Node *previous;                                          // Tracks the previous Node in a Sequence
+    int value;                                               // Contains the Node's integer value
+    Node();                                                  // Empty Node constructor
+    Node(Node *nextNode, Node *previousNode, int nodeValue); // Non-empty Node constructor
 };
