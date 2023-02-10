@@ -1,3 +1,4 @@
 main
 sequence.o
 project3TestHarness.o
+main.o
