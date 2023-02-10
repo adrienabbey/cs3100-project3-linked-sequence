@@ -11,7 +11,20 @@
 Sequence::Sequence(size_type sz)
 {
     // Create a Sequence of the specified length.
-    // These will likely have Node objects.
+
+    // Set the initial size of the sequence to zero:
+    numElts = 0;
+
+    // Set the head and tail to null:
+    head = nullptr;
+    tail = nullptr;
+
+    // Add the appropriate number of blank SequenceNodes:
+    for (int i = 0; i < sz; i++)
+    {
+        // To reduce code repetition, I'm going to use push_back to add each node:
+        push_back(0);
+    }
 }
 
 Sequence::Sequence(const Sequence &s)
@@ -44,6 +57,35 @@ Sequence::value_type &Sequence::operator[](size_type position)
 void Sequence::push_back(const value_type &value)
 {
     // Append the given value to the end of the Sequence, extending its size.
+    // FIXME: ...Why is this a const...?
+
+    // Check to see if the Sequence is empty:
+    if (numElts == 0)
+    {
+        // Then create a new SequenceNode with the given value:
+        SequenceNode *newNode = new SequenceNode(value);
+
+        // Set the head and tail to the new SequenceNode:
+        head = newNode;
+        tail = newNode;
+
+        // Increase the size of the Sequence:
+        numElts++;
+    }
+    // If the Sequence is NOT empty:
+    else
+    {
+        // Create a new SequenceNode:
+        SequenceNode *newNode = new SequenceNode(value);
+
+        // Set the new node's previous and next:
+        newNode->prev = tail;
+        newNode->next = nullptr;
+
+        // Finally, set the new tail and increment the Sequence's size:
+        tail = newNode;
+        numElts++;
+    }
 }
 
 void Sequence::pop_back()
@@ -93,7 +135,7 @@ void Sequence::clear()
 
 void Sequence::erase(size_type position, size_type count)
 {
-    // Deletes the given number of items starting at the index value listed, reducing the Sequence size. 
+    // Deletes the given number of items starting at the index value listed, reducing the Sequence size.
     throw exception();
 }
 
