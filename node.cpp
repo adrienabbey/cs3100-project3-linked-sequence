@@ -5,4 +5,9 @@
 
 /* Constructors */
 Node::Node() : next(nullptr), previous(nullptr), value(0) {}
-Node::Node(Node *newNextNode, Node *newPreviousNode, int newValue) : next(newNextNode), previous(newPreviousNode), value(newValue) {}
+Node::Node(Node *nextNode, Node *previousNode, int newValue)
+{
+    next = nextNode;
+    previous = previousNode;
+    value = newValue;
+}
