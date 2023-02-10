@@ -59,7 +59,7 @@ void Sequence::push_back(const value_type &value)
     // Append the given value to the end of the Sequence, extending its size.
     // FIXME: ...Why is this a const...?
 
-    // Check to see if the Sequence is empty:
+    // If the Sequence is empty:
     if (numElts == 0)
     {
         // Then create a new SequenceNode with the given value:
@@ -81,6 +81,9 @@ void Sequence::push_back(const value_type &value)
         // Set the new node's previous and next:
         newNode->prev = tail;
         newNode->next = nullptr;
+
+        // Point the old tail to the new tail:
+        tail->next = newNode;
 
         // Finally, set the new tail and increment the Sequence's size:
         tail = newNode;
