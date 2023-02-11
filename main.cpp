@@ -12,14 +12,25 @@ using namespace std;
 int main()
 {
     // Test the new sized Sequence constructor:
-    Sequence *newSequence = new Sequence(5);
+    Sequence *newSequence = new Sequence(0);
+
+    // Fill that sequence with values:
+    for (int i = 0; i < 5; i++)
+    {
+        newSequence->push_back(i + 1);
+    }
 
     // Test getting the value of a specified index value:
-    // FIXME: Why is this not working???
-    // int value = newSequence[4];
+    // NOTE: I struggled a bit to figure out dereferencing.
+    // This was a valuable learning experience.
+    int value = (*newSequence)[4];
 
     // Test the Sequence deep copy constructor:
     Sequence *copiedSequence = new Sequence(*newSequence);
+
+    // Test the back and front methods:
+    int front = (*copiedSequence).front();
+    int back = (*copiedSequence).back();
 
     // Test the Sequence deconstructor:
     delete newSequence;

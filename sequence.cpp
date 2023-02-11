@@ -153,14 +153,36 @@ const Sequence::value_type &Sequence::front() const
 {
     // Returns a reference to the first item in the Sequence.
     // NOTE: Throws an exception if there are no items in the Sequence.
-    throw exception();
+
+    // Check to see if there's anything to return:
+    if (head == nullptr)
+    {
+        // Nothing valid to return, so throw an exception:
+        throw exception();
+    }
+    else
+    {
+        // Return the value of the head node:
+        return head->elt;
+    }
 }
 
 const Sequence::value_type &Sequence::back() const
 {
     // Returns a reference to the last item in the Sequence.
     // NOTE: Throws an exception if there are no items in the Sequence.
-    throw exception();
+
+    // Check if there's anything to return:
+    if (tail == nullptr)
+    {
+        // Nothing valid to return, so throw an exception:
+        throw exception();
+    }
+    else
+    {
+        // Return the value of the tail node:
+        return tail->elt;
+    }
 }
 
 bool Sequence::empty() const
