@@ -12,11 +12,14 @@ using namespace std;
 int main()
 {
     // Test the new sized Sequence constructor:
-    Sequence *newSizedSequence = new Sequence(5);
+    Sequence *newSequence = new Sequence(5);
 
     // Test getting the value of a specified index value:
     // FIXME: Why is this not working???
-    // int value = newSizedSequence[4];
+    // int value = newSequence[4];
+
+    // Test the Sequence deconstructor:
+    delete newSequence;
 
     return 0;
 }

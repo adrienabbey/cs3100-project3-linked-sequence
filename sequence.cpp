@@ -36,6 +36,20 @@ Sequence::Sequence(const Sequence &s)
 Sequence::~Sequence()
 {
     // Destroy all objects belonging to this Sequence.
+
+    // Walk through the SequenceNodes, deleting each one:
+    SequenceNode *deleteMe = head;
+    while (deleteMe != nullptr)
+    {
+        // Remember who to kill next:
+        SequenceNode *deleteMeNext = head->next;
+
+        // Delete:
+        delete deleteMe;
+
+        // Next on the block:
+        deleteMe = deleteMeNext;
+    }
 }
 
 /* Operators */
