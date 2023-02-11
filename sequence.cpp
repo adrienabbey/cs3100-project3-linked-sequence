@@ -11,6 +11,7 @@
 Sequence::Sequence(size_type sz)
 {
     // Create a Sequence of the specified length.
+    // NOTE: I do NOT need to validate the size, as it's an unsigned int.
 
     // Set the initial size of the sequence to zero:
     numElts = 0;
@@ -49,7 +50,32 @@ Sequence::value_type &Sequence::operator[](size_type position)
 {
     // Return a reference to the value of the given index position.
     // NOTE: Throw an exception if the index value is invalid.
-    throw exception();
+
+    // Check to see if the index value is valid:
+    // NOTE: unsigned int means less than 0 should be impossible.
+    if (position > numElts - 1)
+    {
+        // Invalid index, throw an exception:
+        throw exception();
+    }
+    else
+    {
+        // Valid index.  Return the integer at the given index.
+
+        // Start with the head node:
+        SequenceNode *currentNode = head;
+
+        // Start crawling through the SequenceNodes until we reach the expected index value:
+        // NOTE: if position = 0, it's already set, and this will do nothing!
+        for (int i = 0; i < position; i++)
+        {
+            // Move currentNode to the next SequenceNode:
+            currentNode = currentNode->next;
+        }
+
+        // Return the value of the currentNode:
+        return currentNode->elt;
+    }
 }
 
 /* Methods */
