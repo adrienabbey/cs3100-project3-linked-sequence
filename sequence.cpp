@@ -62,7 +62,7 @@ Sequence::~Sequence()
 Sequence &Sequence::operator=(const Sequence &s)
 {
     // Destroy objects belonging to this Sequence and replace
-    // them with a deep copy of the given Sequence.
+    // them with a deep copy of the other Sequence.
 
     // Clear the current sequence:
     clear();
