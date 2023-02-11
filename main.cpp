@@ -18,6 +18,9 @@ int main()
     // FIXME: Why is this not working???
     // int value = newSequence[4];
 
+    // Test the Sequence deep copy constructor:
+    Sequence *copiedSequence = new Sequence(*newSequence);
+
     // Test the Sequence deconstructor:
     delete newSequence;
     // FIXME: newSequence still shows up in the debugger.  Why?

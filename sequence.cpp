@@ -31,29 +31,30 @@ Sequence::Sequence(size_type sz)
 Sequence::Sequence(const Sequence &s)
 {
     // Create a deep copy of the given Sequence.
+
+    // Initialize this sequence:
+    head = nullptr;
+    tail = nullptr;
+    numElts = 0;
+
+    // Start copying elements from the other Sequence:
+    SequenceNode *toCopy = s.head;
+    while (toCopy != nullptr)
+    {
+        // Copy the SequenceNode from the other Sequence:
+        push_back(toCopy->elt);
+
+        // Next up:
+        toCopy = toCopy->next;
+    }
 }
 
 Sequence::~Sequence()
 {
     // Destroy all objects belonging to this Sequence.
 
-    // Walk through the SequenceNodes, deleting each one:
-    SequenceNode *deleteMe = head;
-    while (deleteMe != nullptr)
-    {
-        // Remember who to kill next:
-        SequenceNode *deleteMeNext = deleteMe->next;
-
-        // Delete:
-        delete deleteMe;
-
-        // Next on the block:
-        deleteMe = deleteMeNext;
-    }
-    // FIXME: Do I need to do this for a Sequence that will supposedly die?
-    head = nullptr;
-    tail = nullptr;
-    numElts = 0;
+    // Just call the clear function:
+    clear();
 }
 
 /* Operators */
@@ -177,7 +178,29 @@ Sequence::size_type Sequence::size() const
 void Sequence::clear()
 {
     // Delete all items in this sequence (freeing memory).
-    throw exception();
+    // FIXME: Why does this have an exception throw?
+    // throw exception();
+
+    // Destroy all objects belonging to this Sequence.
+
+    // Walk through the SequenceNodes, deleting each one:
+    SequenceNode *deleteMe = head;
+    while (deleteMe != nullptr)
+    {
+        // Remember who to kill next:
+        SequenceNode *deleteMeNext = deleteMe->next;
+
+        // Delete:
+        delete deleteMe;
+
+        // Next on the block:
+        deleteMe = deleteMeNext;
+    }
+
+    // Finally, reset this Sequence to a clean state:
+    head = nullptr;
+    tail = nullptr;
+    numElts = 0;
 }
 
 void Sequence::erase(size_type position, size_type count)
