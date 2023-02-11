@@ -15,8 +15,8 @@ int main()
     Sequence *newSizedSequence = new Sequence(5);
 
     // Test getting the value of a specified index value:
-    // FIXME: Why is this not working??? 
-    // unsigned int value = newSizedSequence[4];
+    // FIXME: Why is this not working???
+    // int value = newSizedSequence[4];
 
     return 0;
 }
