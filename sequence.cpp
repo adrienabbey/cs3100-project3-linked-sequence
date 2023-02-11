@@ -140,7 +140,29 @@ void Sequence::pop_back()
 {
     // Delete the item at the end of the Sequence, reducing its size.
     // NOTE: Throw an exception if there are no items in the Sequence.
-    throw exception();
+
+    // Check to see if there's a valid SequenceNode to remove:
+    if (tail == nullptr)
+    {
+        // Nothing to pop_back, so throw an exception:
+        throw exception();
+    }
+    else
+    {
+        // Remove the last node, and adjust the tail pointer and number of elements.
+
+        // Remember which SequenceNode to delete:
+        SequenceNode *deleteMe = tail;
+
+        // Set the Sequence tail appropriately:
+        tail = deleteMe->prev;
+
+        // Delete the SequenceNode:
+        delete deleteMe;
+
+        // Decrement the number of elements in this Sequence:
+        numElts--;
+    }
 }
 
 void Sequence::insert(size_type position, value_type value)

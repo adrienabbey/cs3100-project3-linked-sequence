@@ -11,10 +11,10 @@ using namespace std;
 
 int main()
 {
-    // Test the new sized Sequence constructor:
+    // Test the new Sequence constructor:
     Sequence *newSequence = new Sequence(0);
 
-    // Fill that sequence with values:
+    // Fill the new sequence with values:
     for (int i = 0; i < 5; i++)
     {
         newSequence->push_back(i + 1);
@@ -31,6 +31,9 @@ int main()
     // Test the back and front methods:
     int front = (*copiedSequence).front();
     int back = (*copiedSequence).back();
+
+    // Test the pop_back method:
+    copiedSequence->pop_back();
 
     // Test the Sequence deconstructor:
     delete newSequence;
