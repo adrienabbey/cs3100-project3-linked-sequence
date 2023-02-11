@@ -61,7 +61,24 @@ Sequence::~Sequence()
 
 Sequence &Sequence::operator=(const Sequence &s)
 {
-    // Destroy objects belonging to this Sequence and replace them with a deep copy of the given Sequence.
+    // Destroy objects belonging to this Sequence and replace
+    // them with a deep copy of the given Sequence.
+
+    // Clear the current sequence:
+    clear();
+
+    // Deep copy the given sequence to this one:
+    // Start copying elements from the other Sequence:
+    SequenceNode *toCopy = s.head;
+    while (toCopy != nullptr)
+    {
+        // Copy the SequenceNode from the other Sequence:
+        push_back(toCopy->elt);
+
+        // Next up:
+        toCopy = toCopy->next;
+    }
+
     return *this;
 }
 
@@ -210,13 +227,22 @@ const Sequence::value_type &Sequence::back() const
 bool Sequence::empty() const
 {
     // Return 'true' if this Sequence is empty, 'false' if not.
-    return false;
+
+    // If there's elements in this Sequence:
+    if (numElts != 0)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
 }
 
 Sequence::size_type Sequence::size() const
 {
     // Return the size of this Sequence.
-    return -1;
+    return numElts;
 }
 
 void Sequence::clear()

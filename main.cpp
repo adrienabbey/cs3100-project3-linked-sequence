@@ -38,6 +38,19 @@ int main()
     // Test the Sequence deconstructor:
     delete newSequence;
     // FIXME: newSequence still shows up in the debugger.  Why?
+    // FIXME: It's also not setting head/tail to nullptr properly.  Why?
+
+    // Test the empty method:
+    bool newIsEmpty = newSequence->empty();
+    bool copiedIsEmpty = copiedSequence->empty();
+
+    // Test the size method:
+    int newSize = newSequence->size();
+    int copiedSize = copiedSequence->size();
+
+    // Test the =operator overload:
+    newSequence = copiedSequence;
+    delete copiedSequence;
 
     return 0;
 }
