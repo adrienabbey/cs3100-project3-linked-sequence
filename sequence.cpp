@@ -42,7 +42,7 @@ Sequence::~Sequence()
     while (deleteMe != nullptr)
     {
         // Remember who to kill next:
-        SequenceNode *deleteMeNext = head->next;
+        SequenceNode *deleteMeNext = deleteMe->next;
 
         // Delete:
         delete deleteMe;
@@ -50,6 +50,10 @@ Sequence::~Sequence()
         // Next on the block:
         deleteMe = deleteMeNext;
     }
+    // FIXME: Do I need to do this for a Sequence that will supposedly die?
+    head = nullptr;
+    tail = nullptr;
+    numElts = 0;
 }
 
 /* Operators */

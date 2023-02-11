@@ -20,6 +20,7 @@ int main()
 
     // Test the Sequence deconstructor:
     delete newSequence;
+    // FIXME: newSequence still shows up in the debugger.  Why?
 
     return 0;
 }
