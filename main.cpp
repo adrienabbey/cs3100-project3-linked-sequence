@@ -50,7 +50,7 @@ int main()
 
     // Test the =operator overload:
     newSequence = copiedSequence;
-    delete copiedSequence;
+    // delete copiedSequence;
 
     return 0;
 }

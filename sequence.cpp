@@ -64,6 +64,8 @@ Sequence &Sequence::operator=(const Sequence &s)
     // Destroy objects belonging to this Sequence and replace
     // them with a deep copy of the other Sequence.
 
+    // FIXME: This does NOT make DEEP copies!!!
+
     // Clear the current sequence:
     clear();
 
