@@ -49,7 +49,8 @@ int main()
     int copiedSize = copiedSequence->size();
 
     // Test the =operator overload:
-    newSequence = copiedSequence;
+    Sequence *equalSequence = new Sequence();
+    equalSequence = copiedSequence;
     // delete copiedSequence;
 
     return 0;
