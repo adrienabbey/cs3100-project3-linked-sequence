@@ -38,6 +38,7 @@ int main()
     // Test the Sequence deconstructor:
     delete newSequence;
     // FIXME: I need to set this POINTER to nullptr!!!
+    // Delete will delete the sequence, but NOT remove the pointer!
 
     // Test the empty method:
     bool newIsEmpty = newSequence->empty();
@@ -50,7 +51,9 @@ int main()
     // Test the =operator overload:
     Sequence equalSequence;
     equalSequence = *copiedSequence;
-    // delete copiedSequence;
+    // pointer = pointer will just change the pointer!
+    // equalSequence is NOT a pointer
+    // I need to dereference the target of this to work!
 
     return 0;
 }
