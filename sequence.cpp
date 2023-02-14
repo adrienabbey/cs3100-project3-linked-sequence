@@ -288,11 +288,8 @@ ostream &operator<<(ostream &os, const Sequence &s)
 {
     // Returns an ostream output string of the given Sequence.
 
-    // SequenceNodes are NOT accessible here, as they are private, and this is not being called from the Sequence class!
-
-    // Try grabbing a SequenceNode's value and saving to an int:
-    Sequence::SequenceNode *current = s.head; // This is the same code that I used in my main to test.
-    // Why does it not work?
-
+    Sequence::SequenceNode *current = s.head; // This works!  Needs Sequence:: at front!
+    // Note that this is not const
+    
     return os;
 }
