@@ -291,7 +291,7 @@ ostream &operator<<(ostream &os, const Sequence &s)
     // SequenceNodes are NOT accessible here, as they are private, and this is not being called from the Sequence class!
 
     // Try grabbing a SequenceNode's value and saving to an int:
-    // int value = (*s)[4]; // This is the same code that I used in my main to test.
+    Sequence::SequenceNode *current = s.head; // This is the same code that I used in my main to test.
     // Why does it not work?
 
     return os;
