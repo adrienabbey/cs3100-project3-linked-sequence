@@ -20,6 +20,9 @@ int main()
         newSequence->push_back(i + 1);
     }
 
+    // Test the ostream operator<<:
+    cout << *newSequence << endl;
+
     // Test getting the value of a specified index value:
     // NOTE: I struggled a bit to figure out dereferencing.
     // This was a valuable learning experience.

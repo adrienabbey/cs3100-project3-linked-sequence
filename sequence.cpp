@@ -288,8 +288,17 @@ ostream &operator<<(ostream &os, const Sequence &s)
 {
     // Returns an ostream output string of the given Sequence.
 
+    // Start with the head node:
     Sequence::SequenceNode *current = s.head; // This works!  Needs Sequence:: at front!
-    // Note that this is not const
-    
+    // Note that this is not const!
+
+    // Start iterating through the list:
+    while (current != nullptr)
+    {
+        // Start adding elements to the ostream:
+        os << current->elt << "  ";
+        current = current->next;
+    }
+
     return os;
 }
