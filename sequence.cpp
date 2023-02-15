@@ -280,8 +280,54 @@ void Sequence::clear()
 
 void Sequence::erase(size_type position, size_type count)
 {
-    // Deletes the given number of items starting at the index value listed, reducing the Sequence size.
-    throw exception();
+    // Deletes the given number of items starting at the index value listed,
+    // reducing the Sequence size and freeing memory.
+    // Assuming position is an array index (starts at zero).
+    // Count must be >= 1 (otherwise there's nothing to delete, and probably
+    // don't want to allow deleting items preceeding the position).
+
+    // Throw an exception if the position or count is invalid:
+    if (position < 0 || position + count > numElts || count < 1)
+    {
+        throw exception();
+    }
+    else
+    {
+        // Otherwise, find the first and last SequenceNode NOT being deleted.
+        SequenceNode *firstKeep = nullptr;
+        SequenceNode *lastKeep = nullptr;
+
+        // Find the first node to keep:
+        // NOTE: This CAN be nullptr!
+        for (int i = 0; i < position; i++)
+        {
+            // The position isn't zero, so we need to iterate through the list.
+            // We need to start with head node, if we don't have a node already selected:
+            if (firstKeep == nullptr)
+            {
+                firstKeep = head;
+            }
+            else
+            {
+                // Select the next node:
+                firstKeep = firstKeep->next;
+            }
+        }
+
+        // Find the last node to keep:
+        int lastKeepIndex = position + count;
+        // Check if there is a lastNode to keep:
+        if (lastKeepIndex = numElts)
+        {
+            //
+        }
+
+        // Start with the head node:
+        lastKeep = head;
+        for (int i = 0; i < lastKeepIndex; i++)
+        {
+        }
+    }
 }
 
 ostream &operator<<(ostream &os, const Sequence &s)
