@@ -161,7 +161,7 @@ void Sequence::pop_back()
     // NOTE: Throw an exception if there are no items in the Sequence.
 
     // Check to see if there's a valid SequenceNode to remove:
-    if (tail == nullptr)
+    if (numElts == 0)
     {
         // Nothing to pop_back, so throw an exception:
         throw exception();
@@ -173,11 +173,11 @@ void Sequence::pop_back()
         // Remember which SequenceNode to delete:
         SequenceNode *deleteMe = tail;
 
-        // Set the Sequence tail appropriately:
-        tail = tail->prev;
-
         // Set the new tail's pointer to null:
         tail->next = nullptr;
+
+        // Set the Sequence tail appropriately:
+        tail = tail->prev;
 
         // Delete the SequenceNode:
         delete deleteMe;
