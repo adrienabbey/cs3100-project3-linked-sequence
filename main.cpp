@@ -23,6 +23,9 @@ int main()
     // Test the erase() method:
     newSequence->erase(3, 3); // Starting with index 3, delete this and next three SequenceNodes.
 
+    // Test the insert() method:
+    newSequence->insert(2, 20);
+
     // Test the ostream operator<<:
     cout << *newSequence << endl;
 

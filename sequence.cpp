@@ -190,7 +190,35 @@ void Sequence::pop_back()
 void Sequence::insert(size_type position, value_type value)
 {
     // Insert the given value at the given position in the Sequence, extending its size.
-    throw exception();
+    // Make sure the index position is valid:
+    if (position > numElts - 1)
+    {
+        // Invalid index, throw a tantrum:
+        throw exception();
+    }
+    else
+    {
+        // Find the target node, starting with head:
+        SequenceNode *targetNode = head;
+        for (int i = 0; i < position; i++)
+        {
+            targetNode = targetNode->next;
+        }
+
+        // Create a new SequenceNode to insert:
+        SequenceNode *newNode = new SequenceNode(value);
+
+        // Set the newNode's prev/next:
+        newNode->next = targetNode;
+        newNode->prev = targetNode->prev;
+
+        // Set next/prev of the nodes around newNode:
+        targetNode->prev->next = newNode;
+        targetNode->prev = newNode;
+
+        // Finally, increment the element count:
+        numElts++;
+    }
 }
 
 const Sequence::value_type &Sequence::front() const
