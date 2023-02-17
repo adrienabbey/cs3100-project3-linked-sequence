@@ -174,7 +174,7 @@ void Sequence::pop_back()
         SequenceNode *deleteMe = tail;
 
         // Set the new tail's pointer to null:
-        tail->next = nullptr;
+        tail->prev->next = nullptr;
 
         // Set the Sequence tail appropriately:
         tail = tail->prev;
