@@ -182,7 +182,7 @@ void Sequence::pop_back()
         // Set the Sequence tail appropriately:
         tail = tail->prev;
 
-                // Delete the SequenceNode:
+        // Delete the SequenceNode:
         delete deleteMe;
 
         // Decrement the number of elements in this Sequence:
@@ -222,8 +222,22 @@ void Sequence::insert(size_type position, value_type value)
         newNode->prev = targetNode->prev;
 
         // Set next/prev of the nodes around newNode:
-        targetNode->prev->next = newNode;
+        // But only if there's a previous node:
+        if (targetNode->prev != nullptr)
+        {
+            targetNode->prev->next = newNode;
+        }
         targetNode->prev = newNode;
+
+        // If the newNode is replacing the head or tail:
+        if (position == 0)
+        {
+            head = newNode;
+        }
+        if (position == numElts - 1)
+        {
+            tail = newNode;
+        }
 
         // Finally, increment the element count:
         numElts++;
@@ -407,13 +421,24 @@ ostream &operator<<(ostream &os, const Sequence &s)
     Sequence::SequenceNode *current = s.head; // This works!  Needs Sequence:: at front!
     // Note that this is not const!
 
+    // Start with "<":
+    os << "<";
+
     // Start iterating through the list:
     while (current != nullptr)
     {
         // Start adding elements to the ostream:
-        os << current->elt << "  ";
+        os << current->elt;
+        // Add a comma so long as there's a next element:
+        if (current->next != nullptr)
+        {
+            os << ", ";
+        }
         current = current->next;
     }
+
+    // End with ">":
+    os << ">";
 
     return os;
 }
