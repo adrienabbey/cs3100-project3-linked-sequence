@@ -397,9 +397,25 @@ void Sequence::erase(size_type position, size_type count)
             SequenceNode *prevNode = currentNode->prev;
             SequenceNode *nextNode = currentNode->next;
 
-            // Glue those two nodes together:
-            prevNode->next = nextNode;
-            nextNode->prev = prevNode;
+            // Glue those two nodes together, but handling for nullptr:
+            if (prevNode != nullptr)
+            {
+                prevNode->next = nextNode;
+            }
+            else
+            {
+                // We havce a new head:
+                head = nextNode;
+            }
+            if (nextNode != nullptr)
+            {
+                nextNode->prev = prevNode;
+            }
+            else
+            {
+                // We have a new tail:
+                tail = prevNode;
+            }
 
             // Delete the current node:
             delete currentNode;
