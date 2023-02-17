@@ -283,11 +283,11 @@ void Sequence::erase(size_type position, size_type count)
     // Deletes the given number of items starting at the index value listed,
     // reducing the Sequence size and freeing memory.
     // Assuming position is an array index (starts at zero).
-    // Count must be >= 1 (otherwise there's nothing to delete, and probably
-    // don't want to allow deleting items preceeding the position).
 
     // Throw an exception if the position or count is invalid:
-    if (position < 0 || position + count > numElts || count < 1)
+    // NOTE: Size_type is an unsigned integer, so I only really need one test.
+    // If these were a signed ints, I'd need to make sure position and count are > 0.
+    if (position + count > numElts)
     {
         throw exception();
     }
@@ -299,9 +299,8 @@ void Sequence::erase(size_type position, size_type count)
 
         // Find the first node to keep:
         // NOTE: This CAN be nullptr!
-        for (int i = 0; i < position; i++)
+        for (int i = 0; i <= position; i++)
         {
-            // The position isn't zero, so we need to iterate through the list.
             // We need to start with head node, if we don't have a node already selected:
             if (firstKeep == nullptr)
             {
@@ -315,17 +314,50 @@ void Sequence::erase(size_type position, size_type count)
         }
 
         // Find the last node to keep:
-        int lastKeepIndex = position + count;
+        int lastKeepIndex = position + count - 1;
         // Check if there is a lastNode to keep:
-        if (lastKeepIndex = numElts)
+        if (lastKeepIndex == numElts - 1)
         {
-            //
+            // Then there's no node to keep.
+        }
+        else
+        {
+            // Otherwise find the last node to keep:
+            for (int i = numElts; i > lastKeepIndex; i--)
+            {
+                // For efficiency's sake, start with the tail:
+                if (lastKeep == nullptr)
+                {
+                    lastKeep = tail;
+                }
+                else
+                {
+                    // Go to the previous node:
+                    lastKeep = lastKeep->prev;
+                }
+            }
         }
 
-        // Start with the head node:
-        lastKeep = head;
-        for (int i = 0; i < lastKeepIndex; i++)
+        // Now that we have which nodes to keep, start deleting nodes between:
+        SequenceNode *currentNode = firstKeep; // Track which nodes to work with.
+        for (int i = 0; i < count; i++)
         {
+            // Track the previous and next nodes:
+            SequenceNode *prevNode = currentNode->prev;
+            SequenceNode *nextNode = currentNode->next;
+
+            // Glue those two nodes together:
+            prevNode->next = nextNode;
+            nextNode->prev = prevNode;
+
+            // Delete the current node:
+            delete currentNode;
+
+            // Don't forget to reduce element count:
+            numElts--;
+
+            // Finally, track the next node:
+            currentNode = nextNode;
         }
     }
 }

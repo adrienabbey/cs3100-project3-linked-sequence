@@ -15,10 +15,13 @@ int main()
     Sequence *newSequence = new Sequence(0);
 
     // Fill the new sequence with values:
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 10; i++)
     {
         newSequence->push_back(i + 1);
     }
+
+    // Test the erase() method:
+    newSequence->erase(3, 3); // Starting with index 3, delete this and next three SequenceNodes.
 
     // Test the ostream operator<<:
     cout << *newSequence << endl;
@@ -36,10 +39,10 @@ int main()
     int back = (*copiedSequence).back();
 
     // Test the pop_back method:
-    copiedSequence->pop_back();
+    newSequence->pop_back();
 
     // Test the Sequence deconstructor:
-    delete newSequence;
+    delete copiedSequence;
     // FIXME: I need to set this POINTER to nullptr!!!
     // Delete will delete the sequence, but NOT remove the pointer!
 
@@ -53,7 +56,7 @@ int main()
 
     // Test the =operator overload:
     Sequence equalSequence;
-    equalSequence = *copiedSequence;
+    equalSequence = *newSequence;
     // pointer = pointer will just change the pointer!
     // equalSequence is NOT a pointer
     // I need to dereference the target of this to work!
