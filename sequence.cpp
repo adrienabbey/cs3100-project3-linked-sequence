@@ -182,11 +182,17 @@ void Sequence::pop_back()
         // Set the Sequence tail appropriately:
         tail = tail->prev;
 
-        // Delete the SequenceNode:
+                // Delete the SequenceNode:
         delete deleteMe;
 
         // Decrement the number of elements in this Sequence:
         numElts--;
+
+        // If there's no more elements, set head to nullptr:
+        if (numElts == 0)
+        {
+            head = nullptr;
+        }
     }
 }
 
