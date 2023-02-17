@@ -173,8 +173,11 @@ void Sequence::pop_back()
         // Remember which SequenceNode to delete:
         SequenceNode *deleteMe = tail;
 
-        // Set the new tail's pointer to null:
-        tail->prev->next = nullptr;
+        // Set the new tail's pointer to null, but only if there's a new tail:
+        if (tail->prev != nullptr)
+        {
+            tail->prev->next = nullptr;
+        }
 
         // Set the Sequence tail appropriately:
         tail = tail->prev;
